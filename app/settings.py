@@ -4,8 +4,8 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
-        env_file='../.env', env_file_encoding='utf-8')
-    TOKEN: str = ''
+        env_file='.env', env_file_encoding='utf-8')
+    TOKEN: str
     WEBHOOK: str = ''
     WEBHOOK_PATH: str = ''
     DB_PROTOCCOL: str = 'sqlite'

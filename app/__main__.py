@@ -1,3 +1,4 @@
+from aiogram_dialog import setup_dialogs
 import uvloop
 import asyncio
 import logging
@@ -45,7 +46,8 @@ def main():
     webhooh_request_handler = SimpleRequestHandler(dispatcher=dp, bot=bot)
     webhooh_request_handler.register(app, path=settings().WEBHOOK_PATH)
     setup_application(app, dp, bot=bot)
-    web.run_app(app)
+    setup_dialogs(dp)
+    web.run_app(app, host='127.0.0.1', port=8000)
 
 
 if __name__ == "__main__":

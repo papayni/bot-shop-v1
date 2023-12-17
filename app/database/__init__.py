@@ -28,6 +28,8 @@ def generate_config():
 async def create_models(tortoise_config: dict):
     command = Command(tortoise_config=tortoise_config, app='models')
     await command.init()
+    await command.init_db(safe=True)
+    await command.upgrade(True)
 
 
 async def migrate_models(tortoise_config: dict):
