@@ -1,12 +1,15 @@
 import contextlib
-from click import Abort
+
 from aerich import Command
-from tortoise import Tortoise
+from click import Abort
 from settings import settings
+from tortoise import Tortoise
 
 all_models = [
     'aerich.models',
-    'database.models.user'
+    'database.models.user',
+    'database.models.product',
+    'database.models.order'
 ]
 
 

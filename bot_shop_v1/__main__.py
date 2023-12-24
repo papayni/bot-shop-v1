@@ -1,17 +1,20 @@
-from aiogram_dialog import setup_dialogs
-import uvloop
 import asyncio
 import logging
+
 import coloredlogs
-from aiohttp import web
+import uvloop
 from aiogram import Bot, Dispatcher
-from aiogram.webhook.aiohttp_server import SimpleRequestHandler, setup_application
-from bot.handlers import include_routers
-from bot.dialogs import include_dialogs
-from utils.print_info import print_info
-from database import close_orm, create_models, generate_config, init_orm, migrate_models
-from settings import settings
 from aiogram.fsm.storage.memory import MemoryStorage
+from aiogram.webhook.aiohttp_server import (SimpleRequestHandler,
+                                            setup_application)
+from aiogram_dialog import setup_dialogs
+from aiohttp import web
+from bot.dialogs import include_dialogs
+from bot.handlers import include_routers
+from database import (close_orm, create_models, generate_config, init_orm,
+                      migrate_models)
+from settings import settings
+from utils.print_info import print_info
 
 
 async def on_startup(dispatcher: Dispatcher, bot: Bot):
@@ -39,6 +42,7 @@ def main():
     coloredlogs.install(level=logging.INFO)
     bot = Bot(token=settings().TOKEN, parse_mode='HTML')
     storage = MemoryStorage()
+
     dp = Dispatcher(storage=storage)
     dp.startup.register(on_startup)
     dp.shutdown.register(on_shutdown)
@@ -53,4 +57,7 @@ def main():
 if __name__ == "__main__":
     loop = uvloop.new_event_loop()
     asyncio.set_event_loop(loop)
-    main()
+    try:
+        main()
+    except (KeyboardInterrupt, SystemExit):
+        logging.error("Bot stopped!")
