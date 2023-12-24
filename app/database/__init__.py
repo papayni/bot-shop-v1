@@ -6,7 +6,8 @@ from settings import settings
 
 all_models = [
     'aerich.models',
-    'database.models.user'
+    'database.models.user',
+    'database.models.product'
 ]
 
 

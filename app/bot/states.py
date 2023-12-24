@@ -13,4 +13,12 @@ class MenuSG(StatesGroup):
 
 
 class ShopSG(StatesGroup):
-    shop = State()
+    category = State()
+    sub_category = State()
+    product = State()
+    description = State()
+
+
+class ConfigurationSG(StatesGroup):
+    fields = State()
+    config = State()
